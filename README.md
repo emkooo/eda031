@@ -1,2 +1,2 @@
 # eda031
-Laborations uppgifter
+Uppgifter ifrån EDA031 på LTH. LOL!
