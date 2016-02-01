@@ -4,7 +4,7 @@
 using namespace std;
 
 
-
+// La till en kommentar för skojs skull huuur
 unsigned char Coding::encode(unsigned char c){
 	return (c+2);
 
