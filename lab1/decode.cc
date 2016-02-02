@@ -11,10 +11,15 @@ int main(int argc, char** argv){
 	//char theFileName[] = {'.','e','n','c', '\0'};
 	
 	//string extension = ".enc"
-	string filename(argv[1]);
-	filename.append(".enc");
+	string infilename(argv[1]);
+	infilename = infilename.substr(0,infilename.length());
+	infilename.append(".enc");
 
-	ifstream myInFile(argv[1]);
+	string filename(argv[1]);
+	filename = filename.substr(0,filename.length());
+	filename.append(".dec");
+
+	ifstream myInFile(infilename);
 	//char temp[strlen(argv)] = append(argv,theFileName);
 	ofstream myOutFile(filename);
 	char c;
