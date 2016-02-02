@@ -11,7 +11,8 @@ CPPFLAGS =  -std=c++11
 CXXFLAGS =  -O2 -Wall -Wextra -pedantic-errors -Wold-style-cast 
 CXXFLAGS += -std=c++11 
 CXXFLAGS += -g
-LDFLAGS =   -g 
+LDFLAGS =   -g
+LDLIBS = -llab1 
 #CPPFLAGS += -stdlib=libc++
 #CXXFLAGS += -stdlib=libc++
 #LDFLAGS +=  -stdlib=libc++
@@ -22,11 +23,11 @@ PROGS = ltest helloworld encode decode
 all: $(PROGS)
 
 # Targets rely on implicit rules for compiling and linking
-ltest: ltest.o list.o
+ltest: ltest.o  liblab1.a #list.o
 helloworld: helloworld.o
 #coding: coding.o encode.o decode.o
-encode: coding.o encode.o
-decode: coding.o decode.o
+encode: liblab1.a #coding.o  #encode.o
+decode: liblab1.a #coding.o  #decode.o
 
 # Phony targets
 .PHONY: all clean
