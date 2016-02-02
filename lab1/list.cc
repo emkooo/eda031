@@ -14,7 +14,15 @@ first = nullptr;
 
 List::~List() {
 
+	Node* temp = first->next;
+
+while(first != nullptr){
 	delete first;
+	first = temp;
+	temp = temp->next;
+}
+
+	
 
 /* Guessing that if we delete the ptr knowing first
 we will delete knowledge of the rest?*/
@@ -80,7 +88,7 @@ first = n;				//The first node is now the created node.
 void List::remove(int d, DeleteFlag df) //Implement for last element also?!?!
 {
 Node* temp = first->next;
-Node* current = first;
+Node* current = first; //
 
 	switch(df)
 	{
