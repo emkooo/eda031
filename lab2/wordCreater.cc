@@ -34,12 +34,5 @@ else{
 }
 myInputFile.close();
 myOutputFile.close();
-	//ofstream myFile;		
-	//myFile.open(/usr/share/dict/words); // not sure..
-
-	// if(myFile.is_open())	//check that there indeed is a file
-	// {
-	// 	cout << "ev thing ok" << endl;
-
-	// }		
+	
 }
