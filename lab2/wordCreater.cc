@@ -7,6 +7,9 @@ a new file with all the words.*/
 #include <fstream>
 #include <string>
 #include <vector>
+#include <locale>
+#include <stdio.h>
+#include <ctype.h> 
 
 using namespace std;
 
@@ -36,6 +39,8 @@ char myCharVector[3];
 vector<string> myStringVector;
 
 	while(getline(myInputFile,line)){		//Keep getting the words.
+
+		line[0] = tolower(line[0]);		//Convert first case to lower.
 
 		if(line.size() > 3)		//If we've got possibilie of triagram
 		{
