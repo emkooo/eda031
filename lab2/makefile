@@ -18,7 +18,7 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = wordCreater #helloworld 
+PROGS = wordCreater spell #helloworld 
 
 all: $(PROGS)
 
@@ -26,6 +26,8 @@ all: $(PROGS)
 #ltest: ltest.o  liblab1.a #list.o
 #coding: coding.o encode.o decode.o
 wordCreater: wordCreater.o
+spell: spell.o dictionary.o
+
 
 
 # Phony targets
