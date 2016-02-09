@@ -8,6 +8,7 @@
 #include "dictionary.h"
 #include <unordered_set>
 
+
 using namespace std;
 
 Dictionary::Dictionary() 
@@ -62,6 +63,61 @@ bool Dictionary::contains(const string& word) const
 
 }
 
+void Dictionary::rank_suggestions(vector<string>& t, const string& word) const
+{ 
+
+	 vector<string> rankedWords [MAXWORDLENGTH];
+	 unsigned int counter = 0;
+	 int d[26][26] = {0};		//The matrix.
+	 int totalCost;
+
+	 while(counter < t.size())
+	 {
+	 	string currentWord = t[counter];
+
+	 				for(unsigned int i = 1; i< word.size(); i++)
+	 				{ 
+	 					char oneCharInFirstWord = word.at(i-1);
+
+	 					for(unsigned int j = 1; j<currentWord.size(); j++)
+	 					{
+	 						char oneCharInSecondWord = currentWord.at(j-1);
+	 						if(oneCharInFirstWord == oneCharInSecondWord)
+	 						{
+	 							d[i][j] = d[i-1][i-1];		//Is the start value?!
+	 							cout << d[i][j] << endl;
+
+	 						}	 else
+	 							 {
+	 								int temp1 = d[i-1][j-1] + 1;
+	 								int temp2 = d[i-1][j] + 1;
+	 								int temp3 = d[i][j-1] +1;
+	 								int dMinValue = min(temp1,min(temp2,temp3));
+	 								d[i][j] = dMinValue;	 								
+	 							 }
+	 					}
+	 					totalCost = d[word.size() -1][currentWord.size() - 1];
+	 					cout << "Totalcost is:"<<totalCost<< endl;
+	 				}
+		
+			rankedWords[totalCost].push_back(currentWord);
+			counter++;
+	 }
+
+	int current=0;
+	for(unsigned int s=0; s<25; s++)
+	{
+		for(unsigned int r =0; r<rankedWords[s].size(); r++)
+		{
+			t[current] = rankedWords[s][r];
+			cout << t[current] << endl;
+
+					current++;
+		}
+	}
+
+}
+
 void Dictionary::add_trigram_suggestions(vector<string>& t, const string& word) const
 {
 	int stringSize = word.size();		// get size of string
@@ -99,7 +155,7 @@ void Dictionary::add_trigram_suggestions(vector<string>& t, const string& word) 
 					}
 			}
 	}
-	
+
 else{
 		vector<Word> tempOne = words[stringSize];
 			for(unsigned int a = 0 ; a < tempOne.size(); a++)
@@ -107,16 +163,22 @@ else{
 				t.push_back(tempOne[a].get_word());
 
 			}
-
 	}
 			sort(t.begin(),t.end());
 }
 
+void Dictionary::trim_suggestions(vector<string>& t) const
+{
+	t.resize(5);
+
+}
 
 vector<string> Dictionary::get_suggestions(const string& word) const 
 {
 		vector<string> suggestions;
 		add_trigram_suggestions(suggestions,word);
+		rank_suggestions(suggestions,word);
+		trim_suggestions(suggestions);
 
 
 

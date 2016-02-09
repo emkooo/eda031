@@ -26,7 +26,7 @@ all: $(PROGS)
 #ltest: ltest.o  liblab1.a #list.o
 #coding: coding.o encode.o decode.o
 wordCreater: wordCreater.o
-spell: spell.o dictionary.o
+spell: spell.o dictionary.o word.o
 
 
 
