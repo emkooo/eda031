@@ -23,23 +23,26 @@ unsigned int counter = 0;
 unsigned int counterI = 0;
 unsigned int counterJ = 0;
 
-string valueInI;
-string valueInJ;
 
- while(counterI <= t.size() && counterJ <= wordVector.size())		// Starting of by one vector element
+
+ while(counterI < t.size() && counterJ < wordVector.size())		// Starting of by one vector element
 {
-	if(valueInI[counterI] == valueInJ[counterJ])	//if we have found matches, increase all counters incl "matches"
+	if(t.at(counterI) == wordVector.at(counterJ))	//if we have found matches, increase all counters incl "matches"
 	{
 		counter++;
 		counterI++;
 		counterJ++;
 	}	
-		else if(counterJ == wordVector.size())		//We've passed all strings in second vector
+		else if(t.at(counterI) < wordVector.at(counterJ))		//We've passed all strings in second vector
 		{
 			counterI++;								//get new vector from vec 1
 		
-		} 
-		counterJ++;
+		} else
+		{
+			counterJ++;
+
+		}
+		
 
 }
 

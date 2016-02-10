@@ -84,13 +84,17 @@ vector<string> rankedWords[MAXWORDLENGTH + 1];
 			for(unsigned int i = 1; i < word.size() + 1; ++i) 
 			{
 			
-				if(currentWord.at(j - 1) == word.at(i - 1)) {
-					d[i][j] = d[i - 1][j - 1];    
-				}
-				else 
-				{
-					d[i][j] = min(min(d[i - 1][j] + 1, d[i][j - 1] + 1), d[i - 1][j - 1] + 1);
-				}
+			d[i][j] = min({currentWord.at(j - 1) == word.at(i - 1) ? d[i - 1][j - 1] : d[i-1][j-1] + 1
+				, d[i][j-1] +1
+				, d[i-1][j] + 1 });
+
+				// if(currentWord.at(j - 1) == word.at(i - 1)) {
+				// 	d[i][j] = d[i - 1][j - 1];    
+				// }
+				// else 
+				// {
+				// 	d[i][j] = min(min(d[i - 1][j] + 1, d[i][j - 1] + 1), d[i - 1][j - 1] + 1);
+				// }
 			}
 		}
 		int totalCost = d[word.size()][currentWord.size()];
