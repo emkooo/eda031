@@ -68,7 +68,7 @@ void Dictionary::rank_suggestions(vector<string>& t, const string& word) const
 
 	 vector<string> rankedWords [MAXWORDLENGTH];
 	 unsigned int counter = 0;
-	 int d[26][26] = {0};		//The matrix.
+	 int d[26][26] = { {0} };		//The matrix.
 	 int totalCost;
 
 	 while(counter < t.size())
@@ -85,7 +85,7 @@ void Dictionary::rank_suggestions(vector<string>& t, const string& word) const
 	 						if(oneCharInFirstWord == oneCharInSecondWord)
 	 						{
 	 							d[i][j] = d[i-1][i-1];		//Is the start value?!
-	 							cout << d[i][j] << endl;
+	 							//cout << d[i][j] << endl;
 
 	 						}	 else
 	 							 {
@@ -97,7 +97,7 @@ void Dictionary::rank_suggestions(vector<string>& t, const string& word) const
 	 							 }
 	 					}
 	 					totalCost = d[word.size() -1][currentWord.size() - 1];
-	 					cout << "Totalcost is:"<<totalCost<< endl;
+	 					//cout << "Totalcost is:"<<totalCost<< endl;
 	 				}
 		
 			rankedWords[totalCost].push_back(currentWord);
@@ -110,7 +110,7 @@ void Dictionary::rank_suggestions(vector<string>& t, const string& word) const
 		for(unsigned int r =0; r<rankedWords[s].size(); r++)
 		{
 			t[current] = rankedWords[s][r];
-			cout << t[current] << endl;
+			//cout << t[current] << endl;
 
 					current++;
 		}
@@ -144,7 +144,8 @@ void Dictionary::add_trigram_suggestions(vector<string>& t, const string& word) 
 		sort(myStringVector.begin(),myStringVector.end());			//Sorts the vector
 
 		for(int j = stringSize -1; j <= stringSize + 1; j++)
-			{	cout << " stringSize is " << stringSize << endl;
+			{	
+					//cout << " stringSize is " << stringSize << endl;
 					for(unsigned int k = 0; k< words[j].size() - 1; k++)
 					{
 					
