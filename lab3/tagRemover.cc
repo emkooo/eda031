@@ -4,27 +4,6 @@
 
 using namespace std;
 
-/*
-Hjälpfunktion som räknar antalet funna 
-strängar "toFind" i strängen "base"
-returnerar antalet i int 
-*/
-
-int numberOfOccur(string toFind, string base)
-{
-    int occurrences = 0;
-	string::size_type start = 0;
-
-	while ((start = base.find(toFind, start)) != string::npos) 
-	{
-		++occurrences;
-		start += toFind.length();
-	}
-
-	return occurrences;
-}
-
-
 int main()
 {
     string line;
@@ -37,60 +16,32 @@ int main()
         while(getline(inFile,line))
         {
 
-        	/*
-           	cout << "number of occur" << numberOfOccur("&lt", line) << endl;
-        	if(numberOfOccur("&lt", line) != 0)
-            {
-            	for(int i = 0; i < numberOfOccur("&lt", line); ++i)
-            	{
-            		int start = line.find("&lt");
-            		cout << "START IN LT: " << start << endl;
-            		cout << "FIND PLACEMENT: " << line.find("&lt") << endl;
-            		line.replace(start, 4, "<");
-            		
-            	}
+            //testar efter specialtecken på ett mycket lättare
+            //sätt, konstigt nog funkar det för alla tecken
+            //förutom <, ifall man ersätter hejhej med < pajjas
+            //hela strängen i output, men om det står hejhej funkar
+            //det? överskumt.
+            while (line.find("&lt;") != std::string::npos)
+            { 
+                line.replace(line.find("&lt;"), 4, "hejhej");
+            }
+                
+            while (line.find("&gt;") != std::string::npos)
+            { 
+                line.replace(line.find("&gt;"), 4, ">");
             }
 
-            cout << "number of occur" << numberOfOccur("&gt", line) << endl;
-            if(numberOfOccur("&gt", line) != 0)
+            while (line.find("&nbsp;") != std::string::npos)
             {
-            	for(int i = 0; i < numberOfOccur("&gt", line); ++i)
-            	{
-            		int start = line.find("&gt");
-            		cout << "START IN GT: " << start << endl;
-            		line.replace(start, 4, ">");
-            		
-            	}
+                line.replace(line.find("&nbsp;"), 6, " ");
             }
 
-            cout << "number of occur" << numberOfOccur("&nbsp", line) << endl;
-            if(numberOfOccur("&nbsp", line) != 0)
-            {
-            	for(int i = 0; i < numberOfOccur("&nbsp", line); ++i)
-            	{
-            		int start = line.find("&nbsp");
-            		cout << "START IN npbs: " << start << endl;
-            		line.replace(start, 6, " ");
-            	
-            	}
+            while (line.find("&amp;") != std::string::npos)
+            { 
+                line.replace(line.find("&amp;"), 5, "&");
             }
 
-            cout << "number of occur" << numberOfOccur("&amp", line) << endl;
-            if(numberOfOccur("&amp", line) != 0)
-            {
-            	for(int i = 0; i < numberOfOccur("&amp", line); ++i)
-            	{
-            		int start = line.find("&amp");
-            		cout << "START IN amp: " << start << endl;
-            		line.replace(start, 5, "&");
-            		
-            	}
-            }
-
-         
-			*/			
-
-
+           
             //ifall vi inte hittar en start på denna rad
             //skriv bara ut den raden då, och gå upp till
             //while och hämta ny rad.
