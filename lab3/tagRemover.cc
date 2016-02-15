@@ -46,7 +46,7 @@ int main()
             		int start = line.find("&lt");
             		cout << "START IN LT: " << start << endl;
             		cout << "FIND PLACEMENT: " << line.find("&lt") << endl;
-            		line.replace(start + 1 , 2, "<");
+            		line.replace(start, 4, "<");
             		
             	}
             }
@@ -58,7 +58,7 @@ int main()
             	{
             		int start = line.find("&gt");
             		cout << "START IN GT: " << start << endl;
-            		line.replace(start + 1, 3, ">");
+            		line.replace(start, 4, ">");
             		
             	}
             }
@@ -70,7 +70,7 @@ int main()
             	{
             		int start = line.find("&nbsp");
             		cout << "START IN npbs: " << start << endl;
-            		line.replace(start, 5, " ");
+            		line.replace(start, 6, " ");
             	
             	}
             }
@@ -82,7 +82,7 @@ int main()
             	{
             		int start = line.find("&amp");
             		cout << "START IN amp: " << start << endl;
-            		line.replace(start + 1, 4, "&");
+            		line.replace(start, 5, "&");
             		
             	}
             }
