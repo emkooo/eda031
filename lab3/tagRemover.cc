@@ -6,14 +6,12 @@
 
 using namespace std;
 
-tagRemover::tagRemover(fstream& inFile)
+tagRemover::tagRemover(istream& inFile)
 {
     string line;
-    //ifstream inFile("test.html");
     ofstream outFile("output.txt");
-
 	
-    if(inFile.is_open() && outFile.is_open())
+    if(inFile.good())
     {
         while(getline(inFile,line))
         {
@@ -101,8 +99,11 @@ tagRemover::tagRemover(fstream& inFile)
         }
 
 
-    inFile.close();
-    outFile.close();
+inFile.eof();
+outFile.eof();
+
+   // inFile.close();
+    // outFile.close();
     }
     else
     {
@@ -112,7 +113,7 @@ tagRemover::tagRemover(fstream& inFile)
    
 }
 
-void tagRemover::print()
+void tagRemover::print(ostream& cout)
 {
 	string toBePrinted;
 	fstream inFile("output.txt");
@@ -157,12 +158,15 @@ void tagRemover::removeSpecChar(string &line)
 int main()
 {
 
-	fstream myInFile("test.html");
-	if(myInFile.is_open())
-	{
-		tagRemover tr(myInFile);
-		tr.print();
-	}
+    tagRemover tr(std::cin);
+    tr.print(std::cout);
 
-return 0;
+// 	fstream myInFile("test.html");
+// 	if(myInFile.is_open())
+// 	{
+// 		tagRemover tr(myInFile);
+// 		tr.print();
+// 	}
+
+// return 0;
 }

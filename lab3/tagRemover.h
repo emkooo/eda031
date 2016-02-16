@@ -10,12 +10,11 @@ using namespace std;
 
 class tagRemover {
 public:
-	tagRemover(fstream& inFile);
-	void print();
+	tagRemover(istream& inFile);
+	void print(ostream& outFile);
     void removeSpecChar(string &thisLine);
 
 private:
-
 };
 
 #endif
