@@ -18,7 +18,7 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = tagRemover findPrimes
+PROGS = tagRemover findPrimes date_test
 
 all: $(PROGS)
 
@@ -27,6 +27,7 @@ all: $(PROGS)
 #coding: coding.o encode.o decode.o
 tagRemover: tagRemover.o
 findPrimes: findPrimes.o
+date_test: date_test.o date.o
 
 
 
