@@ -9,6 +9,7 @@ class tagRemover{
 public:
 	tagRemover(fstream& inFile);
 	void print();
+    void removeSpecChar(string &thisLine);
 	
 private:
 };
@@ -25,30 +26,7 @@ tagRemover::tagRemover(fstream& inFile)
         while(getline(inFile,line))
         {
 
-            //testar efter specialtecken på ett mycket lättare
-            //sätt, konstigt nog funkar det för alla tecken
-            //förutom <, ifall man ersätter hejhej med < pajjas
-            //hela strängen i output, men om det står hejhej funkar
-            //det? överskumt.
-            while (line.find("&lt;") != std::string::npos)
-            { 
-                line.replace(line.find("&lt;"), 4, "lessthan");
-            }
-                
-            while (line.find("&gt;") != std::string::npos)
-            { 
-                line.replace(line.find("&gt;"), 4, ">");
-            }
-
-            while (line.find("&nbsp;") != std::string::npos)
-            {
-                line.replace(line.find("&nbsp;"), 6, " ");
-            }
-
-            while (line.find("&amp;") != std::string::npos)
-            { 
-                line.replace(line.find("&amp;"), 5, "&");
-            }
+            
 
            
             //ifall vi inte hittar en start på denna rad
@@ -56,6 +34,7 @@ tagRemover::tagRemover(fstream& inFile)
             //while och hämta ny rad.
             if(line.find('<') == string::npos)
             {
+                removeSpecChar(line);
                 outFile << line << endl;
                 continue;
             }
@@ -127,6 +106,7 @@ tagRemover::tagRemover(fstream& inFile)
             }
 
             //skriv raden till output.
+            removeSpecChar(line);
             outFile << line << endl;
 
         }
@@ -156,6 +136,34 @@ void tagRemover::print()
 	}
 }
 
+
+void tagRemover::removeSpecChar(string &line)
+{
+    //testar efter specialtecken på ett mycket lättare
+    //sätt, konstigt nog funkar det för alla tecken
+    //förutom <, ifall man ersätter hejhej med < pajjas
+    //hela strängen i output, men om det står hejhej funkar
+    //det? överskumt.
+    while (line.find("&lt;") != std::string::npos)
+    { 
+        line.replace(line.find("&lt;"), 4, "<");
+    }
+        
+    while (line.find("&gt;") != std::string::npos)
+    { 
+        line.replace(line.find("&gt;"), 4, ">");
+    }
+
+    while (line.find("&nbsp;") != std::string::npos)
+    {
+        line.replace(line.find("&nbsp;"), 6, " ");
+    }
+
+    while (line.find("&amp;") != std::string::npos)
+    { 
+        line.replace(line.find("&amp;"), 5, "&");
+    }
+}
 
 int main()
 {
