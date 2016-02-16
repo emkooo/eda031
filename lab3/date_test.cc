@@ -16,24 +16,6 @@ void print(const Date& d) {
 	cout << setw(2) << setfill('0') << d.getDay();
 }
 
-template <typename T>
-T string_cast(string toBeCasted)
-{
-	stringstream ss;
-	ss << toBeCasted;
-	T data;
-	if(ss >> data)
-	{
-		return data;
-	}
-	else
-	{
-		throw invalid_argument("Cast of this type not supported")
-	}
-	return T;
-}
-
-
 int main() {
 	// Check input and output of dates. Uncomment the following when you 
 	// have added operator>> and operator<<.
