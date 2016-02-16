@@ -4,10 +4,19 @@
 
 using namespace std;
 
-int main()
+
+class tagRemover{
+public:
+	tagRemover(fstream& inFile);
+	void print();
+	
+private:
+};
+
+tagRemover::tagRemover(fstream& inFile)
 {
     string line;
-    ifstream inFile("test.html");
+    //ifstream inFile("test.html");
     ofstream outFile("output.txt");
 
 	
@@ -23,7 +32,7 @@ int main()
             //det? överskumt.
             while (line.find("&lt;") != std::string::npos)
             { 
-                line.replace(line.find("&lt;"), 4, "hejhej");
+                line.replace(line.find("&lt;"), 4, "lessthan");
             }
                 
             while (line.find("&gt;") != std::string::npos)
@@ -131,5 +140,32 @@ int main()
        cout << "Could not open file" << endl;
     }
 
-    return 0;
+   
+}
+
+void tagRemover::print()
+{
+	string toBePrinted;
+	fstream inFile("output.txt");
+	if(inFile.is_open())
+	{
+		while(getline(inFile,toBePrinted))
+		{
+			cout << toBePrinted << endl;
+		}
+	}
+}
+
+
+int main()
+{
+
+	fstream myInFile("test.html");
+	if(myInFile.is_open())
+	{
+		tagRemover tr(myInFile);
+		tr.print();
+	}
+
+return 0;
 }
