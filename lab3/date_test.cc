@@ -15,15 +15,6 @@ void print(const Date& d) {
 	cout << setw(2) << setfill('0') << d.getMonth() << '-';
 	cout << setw(2) << setfill('0') << d.getDay();
 }
-// toString() template method.
-template <typename T>
-static string toString(const T& val)
-{
-	stringstream out;
-	out << val;
-	return out.str();
-
-}
 
 
 int main() {
@@ -71,11 +62,4 @@ int main() {
 	cout << endl;
 
 
-	/* Check the toString template */
-	cout << "** Beginning of the toString() **" << endl;
-   double d = 1.234;
-   Date today;
-   string sd = toString(d);
-   string st = toString(today);
-   cout << sd << "\n" << st << endl;
 }
