@@ -1,18 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <iostream>
+#include "tagRemover.h"
 
 using namespace std;
-
-
-class tagRemover{
-public:
-	tagRemover(fstream& inFile);
-	void print();
-    void removeSpecChar(string &thisLine);
-	
-private:
-};
 
 tagRemover::tagRemover(fstream& inFile)
 {
@@ -25,9 +17,6 @@ tagRemover::tagRemover(fstream& inFile)
     {
         while(getline(inFile,line))
         {
-
-            
-
            
             //ifall vi inte hittar en start på denna rad
             //skriv bara ut den raden då, och gå upp till
