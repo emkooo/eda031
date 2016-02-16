@@ -1,5 +1,8 @@
 #include <ctime>  // time and localtime
 #include "date.h"
+#include <string>
+#include <sstream>
+
 
 #include <iostream>
 
@@ -36,18 +39,28 @@ std::ostream& operator<<(std::ostream& os, const Date& d)
 
 std::istream& operator>>(std::istream& is, Date& d)
 {
-    // read obj from stream
-    //id d inte finns tillåt inte input operationer.
-    //detta görs när man sätter stream state till failbit
-   // Date* dateptr = d; 
-    //if( dateptr == nullptr )
-   // {
-    //    is.setstate(std::ios::failbit);
-   // }
-
-    is >> d.year >> d.month >> d.day;
-
-    return is;
+    std::string in;
+	is >> in;
+	
+	std::stringstream ss;
+	ss << in;
+	int year;
+	int month;
+	int day;
+	char c1;
+	char c2;
+	
+	ss >> year >> c1 >> month >> c2 >> day;
+	
+	if (c1 == '-' && c2 == '-'){
+		d.year = year;
+		d.month = month;
+		d.day = day;
+	}
+	else {
+		is.setstate(std::ios::failbit);
+	}
+	return is;
 }
 
 int Date::daysPerMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};

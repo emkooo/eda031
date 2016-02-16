@@ -14,16 +14,13 @@ public:
 	friend std::ostream& operator<<(std::ostream& os, const Date& d);
 	friend std::istream& operator>>(std::istream& is, Date& d);
 
-	//friend std::ostream& operator<<(std::ostream& os, Date const &);
-	//friend std::istream& operator>>(std::istream& is, Date const &);
+	
 
 private:
 	int year;  // the year (four digits)
 	int month; // the month (1-12)
 	int day;   // the day (1-..)
 	static int daysPerMonth[12]; // number of days in each month
-			//friend std::ostream& operator<<(std::ostream& os, Date const &);
-			//friend std::istream& operator>>(std::istream& is, Date const &);
 };
 
 
