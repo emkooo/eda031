@@ -9,28 +9,12 @@
 
 using namespace std;
 
-	/* function checking if the number is a  prime*/
-bool is_prime(const int & number)
-{
-    if (number < 2)
-    {
-            return false;
-    }
-    
-    for (int i = 2; i < (number / 2 + 1); i++)
-    {
-        if (number%i == 0)
-        {
-            return false;
-        }
-    }
-    return true;
-}
 
 string getAllPrimes(int n)
 {
 	cout << "Prime with " << n << " numbers created" << endl;
 	string s;
+	s.resize(n);
 	int numberSize = n;
 
 		for(int i = 0; i < numberSize; i++)
@@ -51,14 +35,13 @@ string getAllPrimes(int n)
 	
 
 	int currentChar;
-
-	for(unsigned int index = 0; index < s.size(); index++)
+	for(unsigned int index = 2; index < s.size(); index++)
 	{
 		currentChar = index;	
-
-			if(is_prime(currentChar))
-			{
-				s.replace(currentChar,1, "P");
+	
+			if(s.at(index) == 'P')
+		{
+				//s.replace(currentChar,1, "P");
 
 				unsigned int k = index;
 				unsigned int numberRemeberer = k;
@@ -77,13 +60,7 @@ string getAllPrimes(int n)
 						s.replace(k,1,"C");
 					//cout << "k is " << k << endl;
 				}
-
-			 }
-			 else
-			 {
-			 	s.replace(currentChar,1,"C");
-			 }
-		
+			 }	
 	}
 
 //	cout << "Afer the check:"<< "\n"<< s << endl;
