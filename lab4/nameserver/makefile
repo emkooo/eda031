@@ -25,8 +25,8 @@ all: $(PROGS)
 # Targets rely on implicit rules for compiling and linking
 #ltest: ltest.o  liblab1.a #list.o
 #coding: coding.o encode.o decode.o
-nstest: nstest.o vns.o
-nstime: nstime.o vns.o
+nstest: nstest.o vns.o mns.o umns.o hns.o
+nstime: nstime.o vns.o mns.o umns.o hns.o
 
 
 # Phony targets

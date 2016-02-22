@@ -1,25 +1,27 @@
 /*****************************************************************
 *
-*VNS.cc
+*	VNS.cc
 *
 *****************************************************************/
+
+
 
 #include "vns.h"
 
 void 
-nameserverinterface::insert(const HostName&, const IPAddress&)
+VNS::insert(const HostName&, const IPAddress&)
 {
 
 }
 
 bool 
-nameserverinterface::remove(const HostName&)
+VNS::remove(const HostName&)
 {
-
+	return false;
 }
 
 IPAddress 
-nameserverinterface::lookup(const HostName&) const
+VNS::lookup(const HostName&) const
 {
-
+	return 0;
 }
