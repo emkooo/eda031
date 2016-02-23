@@ -2,6 +2,7 @@
 #define UMNS_H
 
 #include "nameserverinterface.h"
+#include <unordered_map>
 
 class UMNS : public virtual NameServerInterface {
 public:
@@ -10,6 +11,7 @@ public:
 	IPAddress lookup(const HostName&) const override;
 
 private:
+	std::unordered_map <HostName,IPAddress> IPContainer;
 };
 
 

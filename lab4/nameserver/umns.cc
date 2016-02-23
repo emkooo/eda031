@@ -5,23 +5,36 @@
 **************************************************/
 
 #include "umns.h"
-
+#include <unordered_map>
 
 
 void 
-UMNS::insert(const HostName&, const IPAddress&)
+UMNS::insert(const HostName& hostAddr, const IPAddress& ipAddr)
 {
-
+	IPContainer.emplace(hostAddr,ipAddr);
 }
 
 bool 
-UMNS::remove(const HostName&)
+UMNS::remove(const HostName& hostAddr)
 {
+	auto it = IPContainer.find(hostAddr);
+	if(it != IPContainer.end())
+	{
+		IPContainer.erase(it);
+		return true;
+	}
+	
 	return false;
 }
 
 IPAddress 
-UMNS::lookup(const HostName&) const
+UMNS::lookup(const HostName& hostAddr) const
 {
-	return 0;	
+	auto it = IPContainer.find(hostAddr);
+	if(it != IPContainer.end())
+	{
+		return it->second;
+	}
+
+	return NON_EXISTING_ADDRESS;	
 }
