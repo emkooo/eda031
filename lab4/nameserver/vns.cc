@@ -4,8 +4,7 @@
 *
 *****************************************************************/
 #include "vns.h"
-
-using namespace std;
+#include <algorithm>
 
 void 
 VNS::insert(const HostName& hostAddr, const IPAddress& ipAddr)
@@ -32,7 +31,7 @@ VNS::remove(const HostName& hostAddr)
 IPAddress 
 VNS::lookup(const HostName& hostAddr) const
 {
-	auto it = find_if(IPContainer.begin(),IPContainer.end(),
+	auto it = std::find_if(IPContainer.begin(),IPContainer.end(),
 								[&] (pair<HostName,IPAddress> curr) ->bool {return curr.first == hostAddr;});
 	if(it != IPContainer.end())
 	{
