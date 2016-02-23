@@ -2,6 +2,7 @@
 #define MNS_H
 
 #include "nameserverinterface.h"
+#include <map>
 
 class MNS : public virtual NameServerInterface{
 public:
@@ -10,6 +11,7 @@ public:
 	IPAddress lookup(const HostName&) const override;
 
 private:
+	std::map<HostName,IPAddress> IPContainer;
 };
 
 
