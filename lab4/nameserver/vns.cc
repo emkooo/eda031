@@ -17,8 +17,8 @@ bool
 VNS::remove(const HostName& hostAddr)
 {
 	//Går igenom listan, jobbbar med referensen, anv en curr som jämför om vi hittat rätt.
-	auto it = find_if(IPContainer.begin(),IPContainer.end(),
-								 [&] (pair<HostName,IPAddress> curr) ->bool {return curr.first == hostAddr;});
+	auto it = std::find_if(IPContainer.begin(),IPContainer.end(),
+								 [&] (std::pair<HostName,IPAddress> curr) ->bool {return curr.first == hostAddr;});
 			
 	if(it != IPContainer.end())
 	{
@@ -32,7 +32,7 @@ IPAddress
 VNS::lookup(const HostName& hostAddr) const
 {
 	auto it = std::find_if(IPContainer.begin(),IPContainer.end(),
-								[&] (pair<HostName,IPAddress> curr) ->bool {return curr.first == hostAddr;});
+								[&] (std::pair<HostName,IPAddress> curr) ->bool {return curr.first == hostAddr;});
 	if(it != IPContainer.end())
 	{
 		return it->second;
