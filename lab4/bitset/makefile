@@ -18,7 +18,7 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = simplebitsettest #bitsettest1 bitsettest2
+PROGS = simplebitsettest bitsettest1 #bitsettest2
 
 all: $(PROGS)
 
@@ -26,7 +26,7 @@ all: $(PROGS)
 #ltest: ltest.o  liblab1.a #list.o
 #coding: coding.o encode.o decode.o
 simplebitsettest: simplebitset.o 
-#bitsettest1: bitset.o bitreference.o
+bitsettest1: bitset.o bitreference.o
 #bitsettest2: bitset.o bitreference.o
 
 
