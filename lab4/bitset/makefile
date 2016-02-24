@@ -27,7 +27,7 @@ all: $(PROGS)
 #coding: coding.o encode.o decode.o
 simplebitsettest: simplebitset.o 
 bitsettest1: bitset.o bitreference.o
-bitsettest2: bitset.o bitreference.o bitsetiterator.o
+bitsettest2: bitset.o bitreference.o 
 
 
 # Phony targets
