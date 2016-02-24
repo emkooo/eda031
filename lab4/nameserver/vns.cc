@@ -9,14 +9,13 @@
 void 
 VNS::insert(const HostName& hostAddr, const IPAddress& ipAddr)
 {
-	IPContainer.emplace_back(hostAddr,ipAddr);		//Constructs and inserts element att the back
+	IPContainer.emplace_back(hostAddr,ipAddr);		
 
 }
 
 bool 
 VNS::remove(const HostName& hostAddr)
 {
-	//Går igenom listan, jobbbar med referensen, anv en curr som jämför om vi hittat rätt.
 	auto it = find_if(IPContainer.begin(),IPContainer.end(),
 								 [&] (std::pair<HostName,IPAddress> curr) ->bool {return curr.first == hostAddr;});
 			
@@ -32,8 +31,7 @@ IPAddress
 VNS::lookup(const HostName& hostAddr) const
 {
 	auto it = std::find_if(IPContainer.begin(),IPContainer.end(),
-								[&] (std::pair<HostName,IPAddress> curr) ->bool {return curr.first == hostAddr;});
-	
-	if(it != IPContainer.end()) return it->second;
-	return NON_EXISTING_ADDRESS;
+								[&hostAddr] (std::pair<HostName,IPAddress> curr) ->bool {return curr.first == hostAddr;});
+
+	return (it != IPContainer.end() ? it->second : NON_EXISTING_ADDRESS);
 }
