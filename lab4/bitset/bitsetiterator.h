@@ -2,7 +2,6 @@
  * A BitsetIterator is an iterator for Bitsets.
  * Postfix ++, ==, and -> are not implemented.
  */
-
 #ifndef BITSET_ITERATOR_H
 #define BITSET_ITERATOR_H
 
@@ -24,7 +23,7 @@ public:
 	}
 	
 	BitReference operator*() {
-		return ref; // hmm?
+		return ref;
 	}
 	
 	BitsetIterator& operator=(const BitsetIterator& rhs) {
