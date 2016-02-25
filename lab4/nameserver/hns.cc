@@ -21,16 +21,16 @@ bool
 HNS::remove(const HostName& hostAddr)
 {
 	size_t hostHashValue = host_hash(hostAddr) % size;
-	std::vector<std::pair<HostName,IPAddress>> v = IPContainer[hostHashValue];
-	
-	for(size_t i = 0; i < v.size(); i++)
+	std::vector<std::pair<HostName,IPAddress>>& v = IPContainer[hostHashValue];
+
+	auto it = find_if(v.begin(),v.end(),
+								 [&] (std::pair<HostName,IPAddress> curr) ->bool {return curr.first == hostAddr;});
+
+		if(it != v.end())
 	{
-		if(v.at(i).first == hostAddr)
-		{
-			v.erase(v.begin() + i);
-			return true;	
-		}  
-	}
+		v.erase(it);
+		return true;
+	}											
 	return false;
 }
 
@@ -38,11 +38,15 @@ IPAddress
 HNS::lookup(const HostName& hostAddr) const
 {
 	size_t hostHashValue = host_hash(hostAddr) % size;
-	std::vector<std::pair<HostName,IPAddress>> v = IPContainer[hostHashValue];
+	const std::vector<std::pair<HostName,IPAddress>>& v = IPContainer[hostHashValue];
 
-	for(size_t i = 0; i < v.size(); i++)
-	{
-		if(v.at(i).first == hostAddr) return v.at(i).second;
-	}
+	auto it = find_if(v.begin(),v.end(),
+								 [&] (std::pair<HostName,IPAddress> curr) ->bool {return curr.first == hostAddr;});
+
+		if(it != v.end())
+	{	
+		return it->second;
+	}											
 	return NON_EXISTING_ADDRESS;
 }
+
